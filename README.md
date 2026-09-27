@@ -1,31 +1,58 @@
-# maria
+# maria — sitio personal
 
-Sitio personal para reunir proyectos, ideas y colaboraciones.
+Sitio estático, responsive y sin build step.
 
-## Concepto
+## Archivos
+- `index.html`
+- `styles.css`
 
-**maria — le doy vueltas a las cosas.**
+## Cómo verlo en tu compu
+Abrí `index.html` con doble clic.
 
-A veces terminan en un proyecto.  
-A veces en una conversación, un libro, algo que aprendí o algo que quiero probar.  
-Y algunas simplemente siguen dando vueltas.
+## Cómo subirlo a GitHub
+1. Creá un repositorio nuevo.
+2. Subí `index.html` y `styles.css` a la raíz.
+3. Si querés publicarlo con GitHub Pages:
+   - Settings
+   - Pages
+   - Source: `Deploy from a branch`
+   - Branch: `main`
+   - Folder: `/root`
+   - Save
 
-## Proyectos
+## Qué tenés que cambiar después
+### Email
+En `index.html`, buscá:
+`mailto:tuemail@ejemplo.com`
 
-- Pontis
-- Va y Vuelve
-- Equitómetro
-- El Santuario de los Dragones
+y reemplazalo por tu email real.
 
-## Tecnologías
+### Redes
+Reemplazá los `href="#"` del footer por tus enlaces reales.
 
-Sitio estático hecho con:
+### Links de proyectos
+Cada tarjeta tiene un `href="#"`. Podés reemplazarlo por:
+- la web del proyecto
+- una subpágina
+- un repo
+- o dejarlo sin link por ahora
 
-- HTML
-- CSS
+### Foto
+El bloque grande de la portada está hecho como placeholder.
+Cuando tengas la foto, podemos reemplazar ese bloque por una imagen real sin cambiar el diseño.
 
-Publicado con GitHub Pages.
+## Colores
+- Cereza: `#7a1731`
+- Cereza oscuro: `#5b1025`
+- Trigo / amarillo: `#fcba03`
+- Fondo crema: `#fff9ef`
 
-## Estado
-
-En desarrollo.
+## Microinteracciones
+Esta versión agrega microinteracciones solo con CSS, sin JavaScript:
+- cambio de color y subrayado en navegación
+- botones que se elevan al pasar el mouse y se hunden al tocar/clickear
+- tarjetas con movimiento leve, sombra y cambio de fondo
+- flechas de proyectos con feedback táctil
+- movimiento sutil de las estrellas
+- respuesta visual del nombre `maria`
+- soporte para `prefers-reduced-motion`
