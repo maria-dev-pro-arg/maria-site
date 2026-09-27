@@ -46,3 +46,13 @@ Cuando tengas la foto, podemos reemplazar ese bloque por una imagen real sin cam
 - Cereza oscuro: `#5b1025`
 - Trigo / amarillo: `#fcba03`
 - Fondo crema: `#fff9ef`
+
+## Microinteracciones
+Esta versión agrega microinteracciones solo con CSS, sin JavaScript:
+- cambio de color y subrayado en navegación
+- botones que se elevan al pasar el mouse y se hunden al tocar/clickear
+- tarjetas con movimiento leve, sombra y cambio de fondo
+- flechas de proyectos con feedback táctil
+- movimiento sutil de las estrellas
+- respuesta visual del nombre `maria`
+- soporte para `prefers-reduced-motion`

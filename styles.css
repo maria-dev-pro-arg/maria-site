@@ -577,3 +577,238 @@ img {
     transition: none !important;
   }
 }
+
+/* ---------------------------------------------------------
+   MICROINTERACCIONES
+   Todo esto funciona solo con CSS: no hace falta JavaScript.
+   --------------------------------------------------------- */
+
+:root {
+  --cherry-bright: #9b2346;
+  --wheat-soft: #ffd45a;
+  --shadow-soft: 0 14px 34px rgba(91, 16, 37, 0.14);
+  --shadow-press: 0 6px 16px rgba(91, 16, 37, 0.16);
+}
+
+/* Links: pequeño desplazamiento + cambio de color */
+.nav a,
+.footer a,
+.section-heading a {
+  position: relative;
+  display: inline-block;
+}
+
+.nav a::after,
+.footer nav a::after,
+.section-heading a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -5px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--wheat);
+  transition: right 180ms ease;
+}
+
+@media (hover: hover) {
+  .nav a:hover,
+  .footer a:hover,
+  .section-heading a:hover {
+    color: var(--cherry-bright);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .nav a:hover::after,
+  .footer nav a:hover::after,
+  .section-heading a:hover::after {
+    right: 0;
+  }
+}
+
+/* Botones: suben al hover y se hunden levemente al tocar/clickear */
+.button {
+  box-shadow: 0 0 0 rgba(91, 16, 37, 0);
+  transform: translateY(0) scale(1);
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    transform: translateY(-4px) scale(1.015);
+    background: var(--wheat);
+    color: var(--cherry-dark);
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+.button:active {
+  transform: translateY(2px) scale(0.985);
+  background: var(--wheat-soft);
+  color: var(--cherry-dark);
+  box-shadow: var(--shadow-press);
+}
+
+/* Tarjetas: elevación, sombra y cambio de fondo. */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 190ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 190ms ease,
+    border-color 190ms ease,
+    background 190ms ease;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  right: -80px;
+  top: -90px;
+  background: var(--wheat);
+  opacity: 0;
+  transform: scale(.55);
+  transition: opacity 200ms ease, transform 240ms ease;
+}
+
+@media (hover: hover) {
+  .project-card:hover {
+    transform: translateY(-7px) rotate(-0.25deg);
+    border-color: rgba(122, 23, 49, 0.34);
+    background: rgba(252, 186, 3, 0.08);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .project-card:nth-child(even):hover {
+    transform: translateY(-7px) rotate(0.25deg);
+  }
+
+  .project-card:hover::before {
+    opacity: .18;
+    transform: scale(1);
+  }
+
+  .project-card:hover .project-art {
+    transform: scale(1.025);
+  }
+}
+
+.project-card:active {
+  transform: translateY(-1px) scale(.992);
+  box-shadow: var(--shadow-press);
+}
+
+.project-art {
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
+}
+
+/* Flecha de cada proyecto: pequeño botón táctil */
+.project-copy a {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: transparent;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) {
+  .project-copy a:hover {
+    transform: translateX(4px) rotate(-4deg);
+    background: var(--wheat);
+    color: var(--cherry-dark);
+    box-shadow: 0 8px 18px rgba(91, 16, 37, .12);
+  }
+}
+
+.project-copy a:active {
+  transform: translateX(2px) scale(.9);
+  box-shadow: 0 4px 10px rgba(91, 16, 37, .14);
+}
+
+/* La estrella tiene un gesto leve, no una animación constante. */
+.star-hero,
+.star-cta {
+  transform-origin: 50% 50%;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), filter 220ms ease;
+}
+
+@media (hover: hover) {
+  .hero-visual:hover .star-hero {
+    transform: rotate(24deg) scale(1.08);
+    filter: drop-shadow(0 8px 7px rgba(91, 16, 37, .18));
+  }
+
+  .cta:hover .star-cta {
+    transform: rotate(-18deg) scale(1.08);
+    filter: drop-shadow(0 8px 7px rgba(91, 16, 37, .16));
+  }
+}
+
+/* El nombre responde muy sutilmente al mouse. */
+.brand {
+  transition: color 180ms ease, transform 180ms ease, text-shadow 180ms ease;
+}
+
+@media (hover: hover) {
+  .brand:hover {
+    color: var(--cherry-bright);
+    transform: translateX(4px);
+    text-shadow: 5px 5px 0 rgba(252, 186, 3, .28);
+  }
+}
+
+/* Feedback de teclado accesible. */
+a:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--wheat);
+  outline-offset: 5px;
+  border-radius: 8px;
+}
+
+.button:focus-visible,
+.project-copy a:focus-visible {
+  border-radius: 999px;
+}
+
+/* En pantallas táctiles el feedback sucede al tocar, sin hover pegajoso. */
+@media (hover: none) {
+  .project-card:active {
+    background: rgba(252, 186, 3, 0.1);
+    border-color: rgba(122, 23, 49, 0.3);
+  }
+}
+
+/* Respeta a quienes prefieren menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .project-card,
+  .project-art,
+  .project-copy a,
+  .brand,
+  .star-hero,
+  .star-cta,
+  .nav a,
+  .footer a,
+  .section-heading a {
+    transform: none !important;
+  }
+}
